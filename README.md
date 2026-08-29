@@ -96,173 +96,130 @@ A huge amount of features!
 - ❌ iOS/iPadOS/Android (Not Supported)
 - ❌ Switch/Xbox/Playstation (Not Supported)
 
-## ⬇️ Download & Install
-### For Windows
-You can find the latest release [here](https://github.com/g0aty/SickoMenu/releases/latest).
-Either inject `SickoMenu.dll` with a reliable injector or put `version.dll` in your Among Us directory (the folder containing `Among Us.exe`). Make sure to use the correct DLL for your Among Us platform!
+### ⬇️ Download & Install
 
-**Accessing the Among Us directory for supported platforms:**
-- **🚂 Steam** Right-click **Among Us** in your Library → Click **Manage** → Click **Browse local files**.
-- **🛖 itch.io** Go to wherever you normally execute **Among Us.exe**.
-- **🛍️ Epic Games** Right-click **Among Us** in your Library → Click **Manage** → Click the folder icon in the **Installation** box.
-- **🪟 Microsoft Store** Go to `C:\Program Files\WindowsApps\` and search for **Among Us.exe**, the location of it is the required folder.
-- **❎ XBOX App** Right-click Among Us in your Library → Click **Manage** → Open the **FILES** tab → Click **BROWSE...** → Open the **Among Us** folder → Open the **Content** folder.
-- **❌ Other Platforms** Unsupported!
-
-### For Linux (Proton/Wine) (Version Proxy Only)
-
-**Method 1: (Recommended)**
-
-1. Place `version.dll` in your Among Us directory
-2. Add `WINEDLLOVERRIDES="version=n,b" %command%` to your Among Us launch options. 
-SickoMenu should now load!
-
-**If you're facing issues - try Method 2:**
-
-First, you'll need [protontricks](https://github.com/Matoking/protontricks). You can install it with your packager of choice.
-
-1. Make sure you are running Among Us under Proton. 
-   On Steam, you can check by going to **Properties -> Compatibility**
-2. Put `version.dll` into your Among Us directory (the folder containing `Among Us.exe`).
-3. Run `protontricks --gui`
-4. Choose **Among Us**
-5. Click on **Select the default wineprefix** and then **OK**
-6. Click on **Run winecfg** and then **OK**
-7. In the configuration window, click on **Libraries**
-8. Enter `version` into the **New override for library** input field
-9. Click **Add** and then **Apply**
-10. SickoMenu should now work properly!
-
-### For macOS (Version Proxy Only)
-
-> [!NOTE]
-> This method uses CrossOver. If you have ANY other ways to use this with other software, refer to the contributing section!
-
-> [!TIP]
-> The hotkey to trigger SickoMenu depends on your Mac model. There are 2 possible triggers: Command+Backspace **OR** Function+Backspace.
-
-**Backspace corresponds to the ⌫ on your keyboard.**
-
-**Method 1:**
-
-1. Install a bottle of CrossOver, install Steam in it and install Among Us.
-2. Open the C drive inside of CrossOver (there should be a button). Quit CrossOver. A Finder window will open.
-3. Go to `Program Files (x86)/Steam/steamapps/common/Among Us/` and put the `version.dll` into it. Then reopen CrossOver.
-4. Go to the **Configure Wine** panel, go to **Libraries**, open the menu below **New Replacement for:** and search for `version`.
-5. Select it and click **Add**, then **Apply** and **OK**.
-6. Start Among Us and press **Fn+Backspace or Command+Backspace, depending on your model** to show SickoMenu.
-
-**Method 2:**
-
-1. Download from [PlayOnMac](https://www.playonmac.com) and install it.
-2. Open PlayOnMac and click **Install**.
-   - Search for "Among Us" (even if not listed) and select **Install a non-listed program**.
-   - Name the virtual drive (e.g., "Among Us Modded") and ensure it’s set to **32-bit architecture**.
-3. Download the Steam installer from [store.steampowered.com](https://store.steampowered.com/about/).
-   - In PlayOnMac’s installation wizard, select **Install components directly** > **Steam**.
-   - Follow prompts to install Steam in the virtual drive.
-4. Launch Steam from PlayOnMac, log in, and install Among Us.
-5. Add SickoMenu’s `version.dll`
-   - Right-click your virtual drive in PlayOnMac > **Open virtual drive’s directory**.
-   - Navigate to:  
-     `drive_c/Program Files (x86)/Steam/steamapps/common/Among Us`  
-   - Place the `version.dll` file here.
-6.  In PlayOnMac, select your virtual drive > **Configure** > **Wine** > **Libraries**.
-   - Add `version` to the overrides and set it to **Native (Windows)**.
-7.Run Among Us through Steam in PlayOnMac. Use the hotkey **Fn+Backspace or Command+Backspace** to toggle the mod menu, depending on your model.
-
-**Method 3: (recommended)**
-
-1. Open **Terminal** and install Wine via Homebrew.
-   ```bash
-   /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
-   brew install --cask wine-stable
-   ```  
-2. In Terminal, create a dedicated Wine prefix for Among Us:  
-   ```bash
-   mkdir -p ~/AmongUsWine
-   WINEPREFIX=~/AmongUsWine winecfg
-   ```  
-   - In the Wine Configuration window, set **Windows Version** to **Windows 10** and close.
-3. Download the **Steam Installer** from [store.steampowered.com](https://store.steampowered.com/about/).  
-4. Install Steam into your Wine prefix:  
-   ```bash
-   WINEPREFIX=~/AmongUsWine wine ~/Downloads/SteamSetup.exe
-   ```  
-5. Follow the installer prompts. Launch Steam from Terminal afterward:  
-   ```bash
-   WINEPREFIX=~/AmongUsWine wine ~/AmongUsWine/drive_c/Program\ Files\ \(x86\)/Steam/Steam.exe
-   ```  
-6. Log in to Steam and install **Among Us**.
-7. Locate the Among Us folder:  
-   - Open **Finder** > Go to **Go > Go to Folder** and paste:  
-     `~/AmongUsWine/drive_c/Program Files (x86)/Steam/steamapps/common/Among Us`  
-   - Drag the `version.dll` file into this folder.
-8. In Terminal, run:  
-   ```bash
-   WINEPREFIX=~/AmongUsWine winecfg
-   ```  
-   - Go to the **Libraries** tab.  
-   - Under **New override for library**, type `version`, click **Add**, then set it to **Native (Windows)**.  
-   - Click **Apply** > **OK**.
-9. Launch Steam from Terminal (as in Step 3.3).  
-- Start Among Us from your Steam library.  
-- Use **Command + Backspace or Fn+Backspace** to toggle SickoMenu in-game, depending on your Mac model.
-
-### Method 4: Whisky + Apple Game Porting Toolkit (Apple Silicon)
-
-> [!NOTE]
-> This method uses **Whisky** with **Apple’s Game Porting Toolkit**.
-> It is completely separate from CrossOver, PlayOnMac, and manual Wine prefixes.
-
-> [!TIP]
-> This method works best on **Apple Silicon (M1 / M2 / M3)** Macs running **macOS Ventura (13+)**.
-
-1. Download and install Whisky from:
-https://getwhisky.app
-Drag Whisky into your Applications folder and open it.
-2. Allow Whisky to install Wine and Apple Game Porting Toolkit when prompted.
-Create a new bottle in Whisky:
-Click + New Bottle.
-Name it something like Among Us GPTK.
-Set Windows Version to Windows 10.
-Leave architecture at default (64-bit).
-Create the bottle.
-3. Install Steam inside the bottle:
-Select your bottle and click Run Installer.
-Download the Steam installer from
-https://store.steampowered.com/about/
-Select SteamSetup.exe and complete the installation.
-Launch Steam from Whisky:
-Log in to your Steam account.
-Install Among Us normally through Steam.
-Close Steam once the installation finishes.
-4. Add SickoMenu’s version.dll:
-In Whisky, select your bottle and click Open Bottle in Finder.
-5. Navigate to:
-```drive_c/Program Files (x86)/Steam/steamapps/common/Among Us```
-Place the version.dll file into this folder.
-6. Configure the DLL override:
-With the bottle selected, open Bottle Settings.
-Click Wine Configuration.
-Go to the Libraries tab.
-Under New override for library, type version.
-Click Add, set it to Native (Windows).
-Click Apply and OK.
-7. Launch the game:
-Start Steam from Whisky.
-Launch Among Us from your Steam library.
-Use Fn + Backspace or Command + Backspace (depending on your Mac model) to toggle SickoMenu.
+**⚠️ IMPORTANT: Read This First!**
+*   **Antivirus Warnings (False Positives):** Because this mod changes how the game code works, your computer's antivirus program (like Windows Defender) might flag it as a virus and try to block it. This is known as a "false positive" and is completely normal for game mods.
+*   **Windows Defender Exclusions:** To prevent Windows Defender from deleting the mod files behind your back, we highly advise you to put your **entire Among Us game folder** into your Windows Defender "Exclusions" list *before* you download the mod. 
+*   **How to Know it Worked:** After you finish the steps below and start the game, look at the bottom left corner of your screen. If you see the SickoMenu watermark there, it means the menu is successfully installed!
+*   **Need Help?** If you get stuck on any of these steps, or if the menu simply won't show up, please join our Discord server! We are more than happy to help you get it working.
 
 ---
-### **Note:**
-**For Method 2:**
-- macOS Catalina+ Users: macOS versions ≥10.15 lack 32-bit support, which may cause issues. Use **Wine-Staging** (via Homebrew) for better compatibility:
-  ```bash
-  brew install --cask wine-stable
-  ```
-  **For Method 3:**
-- The bash in the first step will install Homebrew, if you don't have it on your os. I recommend this method for users comfortable with basic terminal commands.
+
+#### 💻 For Windows Users (Easiest)
+
+**Step 1: Download the Correct File for Your Game**
+Go to our Releases page. You will see a list of files. You want to download one of the "**Release**" files (ignore the ones that say "Debug" or "Source code").
+*   If you play on **Steam** or **itch.io**, click and download this one: `Release_x86_SteamItch.zip`
+*   If you play on **Epic Games**, **Xbox App**, or **Microsoft Store**, click and download this one: `Release_x64_EpicXboxMS.zip`
+
+**Step 2: Unzip the File (Crucial Step!)**
+You *cannot* just put the `.zip` file you downloaded into your game. You have to open it like a package first!
+1. Right-click the `.zip` file you just downloaded.
+2. Click **"Extract All..."** from the menu that pops up, and then hit the "Extract" button.
+3. A new, normal-looking folder will open. Inside that folder, you will see a file named `version.dll`. **This `version.dll` file is the only file you actually need.**
+
+**Step 3: Find Your Game Folder**
+You need to put that `version.dll` file directly into your Among Us game folder. Here is exactly how to find that folder depending on where you bought the game:
+*   🚂 **Steam:** Open the Steam app. Right-click on "Among Us" in your games list on the left. Click on "Manage", and then click "Browse local files". A folder will pop up on your screen.
+*   🛍️ **Epic Games:** Open the Epic Games launcher. Right-click on "Among Us" in your library. Click "Manage", then click the little folder icon next to "Installation".
+*   🪟 **Microsoft Store / Xbox App:** Open the Xbox App. Right-click on "Among Us" in your library. Click "Manage", go to the "FILES" tab at the top, and click "BROWSE...". From there, open the "Among Us" folder, and then open the "Content" folder.
+*   🛖 **itch.io:** Simply go to the folder where you normally go to double-click the `Among Us.exe` file to start the game.
+
+**Step 4: Install the Mod**
+Take the `version.dll` file you got in Step 2 and drag-and-drop it straight into the game folder you just opened in Step 3. (You will know you are in the right place if you can see a file named `Among Us.exe` sitting in that exact same folder).
+
+**Step 5: Play!**
+Start your game normally. Check the bottom left corner for the watermark to confirm it worked!
+
+*(Note: Other platforms like iOS, Android, Switch, PlayStation, and cracked versions are NOT supported).*
+
+---
+
+#### 🐧 For Linux Users (Including Steam Deck / Proton / Wine)
+
+**Method 1 (Highly Recommended & Easiest):**
+1. Since you are likely using Steam on Linux, download the `Release_x86_SteamItch.zip` file.
+2. Right-click the downloaded `.zip` file, extract it, and find the `version.dll` file inside.
+3. Open Steam, right-click "Among Us" -> "Manage" -> "Browse local files". 
+4. Drop your extracted `version.dll` file into that folder.
+5. Go back to your Steam app. Right-click on "Among Us" and click "Properties".
+6. In the "General" tab, look for a text box at the very bottom called "Launch Options".
+7. Copy and paste exactly this text into that box: `WINEDLLOVERRIDES="version=n,b" %command%`
+8. Start the game!
+
+**Method 2 (Only if Method 1 fails):**
+*(Note: You will need a program called `protontricks` installed on your system for this).*
+1. Make sure you are running Among Us using Proton in Steam (Right-click game -> Properties -> Compatibility).
+2. Put your extracted `version.dll` file into your Among Us game folder.
+3. Open your computer's terminal and type `protontricks --gui` to run it.
+4. A menu will pop up. Choose "Among Us".
+5. Click "Select the default wineprefix" and then click OK.
+6. Click "Run winecfg" and then click OK.
+7. A configuration window will open. Click on the "Libraries" tab at the top.
+8. Look for the box that says "New override for library". Type the word `version` into it.
+9. Click "Add", then click "Apply", and finally click "OK".
+10. The mod should now work perfectly!
+
+---
+
+#### 🍏 For macOS Users
+
+*(Note: Because Among Us is a Windows game, installing this on a Mac requires extra steps and special software to translate the Windows files. Follow these steps carefully.)*
+
+**Important Tips for Mac:**
+*   To open the mod menu in the game, you will need to press either **Command + Backspace (⌫)** OR **Fn + Backspace (⌫)**, depending on your Mac keyboard.
+*   You will be using the Steam version of the game, so make sure you download the `Release_x86_SteamItch.zip` file, double-click it to unzip it, and use the `version.dll` file inside for all the methods below.
+
+**Method 1: Using CrossOver**
+1. Install an app called CrossOver, use it to install Steam, and then download Among Us inside that Steam.
+2. Open the "C drive" inside of CrossOver (there is a button for this in the app).
+3. Completely close the CrossOver app. A Finder window will pop up.
+4. In that Finder window, go to `Program Files (x86)` -> `Steam` -> `steamapps` -> `common` -> `Among Us`. Drop your extracted `version.dll` file in there.
+5. Reopen CrossOver. Go to the "Configure Wine" panel, and click on the "Libraries" tab.
+6. Under "New Replacement for:", type in `version`. Click it, hit "Add", hit "Apply", and hit "OK".
+7. Start the game and press your hotkey to open the menu!
+
+**Method 2: Using PlayOnMac**
+1. Download and install the PlayOnMac app. Open it and click "Install".
+2. Search for "Among Us" and choose "Install a non-listed program". Name your virtual drive (like "Among Us Modded") and make sure it is set to "32-bit architecture".
+3. Download the regular Steam installer for Windows from Steam's website.
+4. In the PlayOnMac setup, choose "Install components directly" > "Steam". Follow the screen to install Steam.
+5. Open Steam from PlayOnMac, log in, and download Among Us. 
+6. Right-click your new virtual drive in PlayOnMac and click "Open virtual drive's directory".
+7. Go to: `drive_c/Program Files (x86)/Steam/steamapps/common/Among Us` and drop your extracted `version.dll` file here.
+8. In PlayOnMac, click your virtual drive -> "Configure" -> "Wine" -> "Libraries". Type `version` in the overrides box, click add, and set it to "Native (Windows)".
+9. Run the game through Steam inside PlayOnMac!
+
+**Method 3: Terminal & Wine (For users comfortable with code)**
+1. Open your Mac's Terminal and install Wine by pasting this code:
+   `/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"`
+   Then hit enter, and type:
+   `brew install --cask wine-stable`
+2. Create a special Wine folder for the game by typing: 
+   `mkdir -p ~/AmongUsWine`
+   `WINEPREFIX=~/AmongUsWine winecfg`
+3. A window will open. Change the Windows Version to "Windows 10" and close it.
+4. Download the Windows Steam Installer. Install it through the terminal by typing:
+   `WINEPREFIX=~/AmongUsWine wine ~/Downloads/SteamSetup.exe`
+5. Open Steam by typing:
+   `WINEPREFIX=~/AmongUsWine wine ~/AmongUsWine/drive_c/Program\ Files\ \(x86\)/Steam/Steam.exe`
+6. Log in and download Among Us.
+7. Open a Finder window, click "Go" at the top of your screen, click "Go to Folder", and paste this exactly:
+   `~/AmongUsWine/drive_c/Program Files (x86)/Steam/steamapps/common/Among Us`
+8. Drop your extracted `version.dll` file into this folder.
+9. Go back to Terminal and type: `WINEPREFIX=~/AmongUsWine winecfg`
+10. Go to the "Libraries" tab, type `version` under "New override", click Add, set it to "Native (Windows)", click Apply, and click OK.
+11. Start Steam from the Terminal again (Step 5) and play!
+
+**Method 4: Using Whisky (Best for Apple Silicon M1/M2/M3 chips)**
+1. Go to `getwhisky.app`, download it, drag it to your Applications folder, and open it. Let it install everything it asks to.
+2. Click "+ New Bottle" in Whisky. Name it "Among Us", set the version to Windows 10, and click Create.
+3. Click "Run Installer", find your downloaded Windows Steam installer, and install it.
+4. Log into Steam inside Whisky, download Among Us, and then fully close Steam.
+5. In Whisky, click "Open Bottle in Finder". Go to `drive_c` -> `Program Files (x86)` -> `Steam` -> `steamapps` -> `common` -> `Among Us` and drop your extracted `version.dll` file in there.
+6. In Whisky, click "Bottle Settings" -> "Wine Configuration" -> "Libraries" tab. Type `version` in the new override box, click Add, set it to "Native (Windows)", Apply, and OK.
+7. Open Steam from Whisky, start the game, and enjoy!
 ---
 ## ⌨️ Default Hotkeys
 
