@@ -82,6 +82,8 @@ IDB_PNG15               PNG                     "fungle.png"
 
 IDB_PNG16               PNG                     "player_visor.png"
 
+IDB_PNG17               PNG                     "sickomenu_logo.png"
+
 #endif    // English (United States) resources
 /////////////////////////////////////////////////////////////////////////////
 
