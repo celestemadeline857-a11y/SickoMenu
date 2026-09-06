@@ -37,6 +37,8 @@ constexpr DWORD MAX_RENDER_THREAD_COUNT = 5; //Should be overkill for our purpos
 
 std::vector<MapTexture> maps = std::vector<MapTexture>();
 std::unordered_map<ICON_TYPES, IconTexture> icons;
+D3D11Image* sickoMenuLogo = nullptr;
+std::vector<VotekickToast> votekickToasts;
 
 typedef struct Cache
 {
@@ -228,6 +230,7 @@ bool ImGuiInitialization(IDXGISwapChain* pSwapChain) {
         icons.insert({ ICON_TYPES::PLAY, { D3D11Image(Resource(IDB_PNG13), pDevice), 0.55f } });
         icons.insert({ ICON_TYPES::PAUSE, { D3D11Image(Resource(IDB_PNG14), pDevice), 0.55f } });
         icons.insert({ ICON_TYPES::PLAYERVISOR, { D3D11Image(Resource(IDB_PNG16), pDevice), 0.02f } });
+        sickoMenuLogo = new D3D11Image(Resource(IDB_PNG17), pDevice);
 
         DirectX::hRenderSemaphore = CreateSemaphore(
             NULL,                                 // default security attributes
@@ -380,6 +383,70 @@ HRESULT __stdcall dPresent(IDXGISwapChain* __this, UINT SyncInterval, UINT Flags
         ImGuiRenderer::Submit([]() { Radar::Render(); });
     }
     else State.HoveringOverAnyWindowButRadar = ImGui::GetIO().WantCaptureMouse;
+
+    if (!votekickToasts.empty())
+    {
+        ImGuiRenderer::Submit([]()
+        {
+            float dt = ImGui::GetIO().DeltaTime;
+            for (auto it = votekickToasts.begin(); it != votekickToasts.end();) {
+                it->timeRemaining -= dt;
+                if (it->timeRemaining <= 0.f) it = votekickToasts.erase(it);
+                else ++it;
+            }
+
+            float yOffset = 20.f;
+            ImVec2 winSize = DirectX::GetWindowSize();
+            int idx = 0;
+            for (auto& toast : votekickToasts) {
+                float alpha = toast.timeRemaining < 1.f ? toast.timeRemaining : 1.f;
+
+                ImGui::PushStyleVar(ImGuiStyleVar_WindowRounding, 12.f);
+                ImGui::PushStyleVar(ImGuiStyleVar_WindowPadding, ImVec2(16.f, 12.f));
+                ImGui::PushStyleVar(ImGuiStyleVar_WindowBorderSize, 1.5f);
+                ImGui::PushStyleColor(ImGuiCol_WindowBg, ImVec4(0.05f, 0.06f, 0.075f, 0.95f * alpha));
+                ImGui::PushStyleColor(ImGuiCol_Border, ImVec4(1.f, 0.24f, 0.24f, 0.55f * alpha));
+
+                float logoSize = 48.f;
+                float fontScale = 1.6f;
+                ImVec2 titleTextSize = ImGui::CalcTextSize("SickoMenu");
+                ImVec2 msgTextSize = ImGui::CalcTextSize(toast.message.c_str());
+                float textBlockWidth = (titleTextSize.x > msgTextSize.x ? titleTextSize.x : msgTextSize.x) * fontScale;
+                float textBlockHeight = (titleTextSize.y + msgTextSize.y) * fontScale;
+                ImVec2 windowPadding(16.f, 12.f);
+                float contentWidth = logoSize + 8.f + textBlockWidth;
+                float contentHeight = logoSize > textBlockHeight ? logoSize : textBlockHeight;
+                ImVec2 windowSize(contentWidth + windowPadding.x * 2.f, contentHeight + windowPadding.y * 2.f);
+
+                ImGui::SetNextWindowSize(windowSize, ImGuiCond_Always);
+                ImGui::SetNextWindowPos({ winSize.x * 0.5f, yOffset }, ImGuiCond_Always, { 0.5f, 0.f });
+                ImGui::Begin(("##VotekickToast" + std::to_string(idx++)).c_str(), nullptr,
+                    ImGuiWindowFlags_NoTitleBar | ImGuiWindowFlags_NoResize | ImGuiWindowFlags_NoMove |
+                    ImGuiWindowFlags_NoInputs | ImGuiWindowFlags_NoScrollbar);
+
+                ImGui::SetWindowFontScale(fontScale);
+
+                if (sickoMenuLogo) {
+                    ImGui::Image((void*)sickoMenuLogo->shaderResourceView, ImVec2(logoSize, logoSize));
+                    ImGui::SameLine();
+                }
+                ImGui::BeginGroup();
+
+                ImVec2 titlePos = ImGui::GetCursorScreenPos();
+                ImU32 titleColor = ImGui::ColorConvertFloat4ToU32(ImVec4(1.f, 0.23f, 0.23f, alpha));
+                ImGui::GetWindowDrawList()->AddText({ titlePos.x + 1, titlePos.y }, titleColor, "SickoMenu");
+                ImGui::TextColored(ImVec4(1.f, 0.23f, 0.23f, alpha), "SickoMenu");
+
+                ImGui::TextColored(ImVec4(0.24f, 0.91f, 0.81f, alpha), "%s", toast.message.c_str());
+                ImGui::EndGroup();
+
+                yOffset += windowSize.y + 8.f;
+                ImGui::End();
+                ImGui::PopStyleColor(2);
+                ImGui::PopStyleVar(3);
+            }
+        });
+    }
 
     if (CanDrawReplay())
     {
