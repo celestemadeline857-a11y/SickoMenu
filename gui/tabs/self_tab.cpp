@@ -657,6 +657,10 @@ namespace SelfTab {
             if (ToggleButton("Autokill", &State.AutoKill)) {
                 State.Save();
             }
+            ImGui::SameLine();
+            if (ToggleButton("Votekick Notifications", &State.VotekickNotifications)) {
+                State.Save();
+            }
 
             if (ToggleButton("Report Body on Murder", &State.ReportOnMurder)) {
                 State.Save();
