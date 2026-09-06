@@ -3,6 +3,7 @@
 #include "directx11.h"
 #include <vector>
 #include <unordered_map>
+#include <string>
 #include <imgui/imgui.h>
 
 enum class ICON_TYPES {
@@ -33,6 +34,13 @@ struct IconTexture {
 
 extern std::vector<MapTexture> maps;
 extern std::unordered_map<ICON_TYPES, IconTexture> icons;
+
+struct VotekickToast {
+	std::string message;
+	float timeRemaining;
+};
+extern D3D11Image* sickoMenuLogo;
+extern std::vector<VotekickToast> votekickToasts;
 
 extern D3D_PRESENT_FUNCTION oPresent;
 HRESULT __stdcall dPresent(IDXGISwapChain* __this, UINT SyncInterval, UINT Flags);
