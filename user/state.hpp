@@ -144,6 +144,7 @@ public:
     bool ChatSpamEveryone = false;
     int ChatSpamMode = 0;
     int CrashChatSpamMode = 1;
+    bool VotekickNotifications = false;
     bool AutoJoinLobby = false;
     bool AutoRejoinOnKick = false;
     std::string PendingRejoinTargetFC = "";
