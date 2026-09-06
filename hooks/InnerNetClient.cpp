@@ -11,6 +11,7 @@
 #include "esp.hpp"
 #include <chrono>
 #include "achievements.hpp"
+#include "DirectX.h"
 
 using namespace std::string_view_literals;
 
@@ -1900,6 +1901,25 @@ void dVoteBanSystem_AddVote(VoteBanSystem* __this, int32_t srcClient, int32_t cl
             if (p->fields._.OwnerId == srcClient) sourcePlayer = p;
             if (p->fields._.OwnerId == clientId) affectedPlayer = p;
         }
+
+        std::string sourceplayerName = convert_from_string(NetworkedPlayerInfo_get_PlayerName(GetPlayerData(sourcePlayer), nullptr));
+        std::string affectedplayerName = convert_from_string(NetworkedPlayerInfo_get_PlayerName(GetPlayerData(affectedPlayer), nullptr));
+        LOG_DEBUG(sourceplayerName + " attempted to votekick " + affectedplayerName);
+
+        if (State.VotekickNotifications) {
+            std::string voteMsg;
+            if (affectedPlayer == *Game::pLocalPlayer) {
+                voteMsg = std::format("{} just votekicked you!", sourceplayerName);
+            }
+            else if (sourcePlayer == *Game::pLocalPlayer) {
+                voteMsg = std::format("You just votekicked {}!", affectedplayerName);
+            }
+            else {
+                voteMsg = std::format("{} just votekicked {}!", sourceplayerName, affectedplayerName);
+            }
+            votekickToasts.push_back({ voteMsg, 5.f });
+        }
+
         if (IsHost()) {
             if (affectedPlayer == *Game::pLocalPlayer) return; //anti kick as host
             if (sourcePlayer == *Game::pLocalPlayer) {
@@ -1929,10 +1949,6 @@ void dVoteBanSystem_AddVote(VoteBanSystem* __this, int32_t srcClient, int32_t cl
                 State.VotekickRejoinDelay = 0.25f; // a small delay to let the votekick go through.
             }
         }
-
-        std::string sourceplayerName = convert_from_string(NetworkedPlayerInfo_get_PlayerName(GetPlayerData(sourcePlayer), nullptr));
-        std::string affectedplayerName = convert_from_string(NetworkedPlayerInfo_get_PlayerName(GetPlayerData(affectedPlayer), nullptr));
-        LOG_DEBUG(sourceplayerName + " attempted to votekick " + affectedplayerName);
     }
     catch (...) {
         LOG_ERROR("Exception occurred in VoteBanSystem_AddVote (InnerNetClient)");
