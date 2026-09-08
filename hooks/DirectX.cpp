@@ -147,6 +147,8 @@ LRESULT __stdcall dWndProc(const HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lPa
         if (KeyBinds::IsKeyPressed(State.KeyBinds.Complete_Tasks) && IsInGame()) CompleteAllTasks();
         if (KeyBinds::IsKeyPressed(State.KeyBinds.Leave_Game) && (IsInGame() || IsInLobby()) && !State.PanicMode)
             app::AmongUsClient_ExitGame((*Game::pAmongUsClient), DisconnectReasons__Enum::ExitGame, NULL);
+        if (KeyBinds::IsKeyPressed(State.KeyBinds.Cancel_Start) && IsInLobby() && State.IsStartCountdownActive)
+            State.CancelingStartGame = true;
     }
     if (KeyBinds::IsKeyPressed(State.KeyBinds.Toggle_Sicko)) {
         State.PanicMode = !State.PanicMode;
