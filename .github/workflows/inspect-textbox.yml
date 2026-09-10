@@ -1,0 +1,19 @@
+name: inspect-textbox
+on:
+  push:
+    branches: [feature/chat-shift-enter]
+jobs:
+  inspect:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: inspect
+        run: |
+          grep -n -A80 -B10 'struct TextBoxTMP' appdata/il2cpp-types.h > textbox.txt || true
+          grep -n -A80 -B10 'TextBoxTMP_' appdata/il2cpp-functions.h >> textbox.txt || true
+          grep -n -A80 -B10 'TextBoxTMP_' appdata/il2cpp-api-functions.h >> textbox.txt || true
+          git config user.name github-actions
+          git config user.email github-actions@github.com
+          git add textbox.txt
+          git commit -m 'Inspect TextBoxTMP definitions' || exit 0
+          git push
