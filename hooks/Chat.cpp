@@ -1139,6 +1139,15 @@ void dChatBubble_SetText(ChatBubble* __this, String* chatText, MethodInfo* metho
 
 void dChatController_SendFreeChat(ChatController* __this, MethodInfo* method) {
 	if (State.ShowHookLogs) Log.HookDebug("Hook dChatController_SendFreeChat executed", false);
+	bool shiftHeld = ImGui::IsKeyDown(0x10) || ImGui::IsKeyDown(0xA0) || ImGui::IsKeyDown(0xA1);
+	if (shiftHeld) {
+		auto textArea = __this->fields.freeChatField->fields.textArea;
+		if (textArea->fields.text->fields.m_stringLength < textArea->fields.characterLimit) {
+			auto text = convert_from_string(textArea->fields.text);
+			TextBoxTMP_SetText(textArea, convert_to_string(text + "\n"), NULL, NULL);
+		}
+		return;
+	}
 	auto chatText = convert_from_string(__this->fields.freeChatField->fields.textArea->fields.text);
 	if (convert_to_string(UncensorLink(chatText, ".­"))->fields.m_stringLength > 120) chatText = UncensorLink(chatText);
 	else chatText = UncensorLink(chatText, ".­");
