@@ -1,0 +1,36 @@
+name: Apply chat shift enter
+
+on:
+  push:
+    branches:
+      - feature/chat-shift-enter-v2
+
+permissions:
+  contents: write
+
+jobs:
+  apply:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Apply feature
+        shell: bash
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+          path = Path("hooks/Chat.cpp")
+          text = path.read_text()
+          marker = '\tif (State.ShowHookLogs) Log.HookDebug("Hook dChatController_SendFreeChat executed", false);\n'
+          if 'bool shiftHeld = ImGui::IsKeyDown(0x10)' in text:
+              raise SystemExit("feature already applied")
+          if marker not in text:
+              raise SystemExit("target hook not found")
+          insertion = marker + '''\tbool shiftHeld = ImGui::IsKeyDown(0x10) || ImGui::IsKeyDown(0xA0) || ImGui::IsKeyDown(0xA1);\n\tif (shiftHeld) {\n\t\tauto textArea = __this->fields.freeChatField->fields.textArea;\n\t\tif (textArea->fields.text->fields.m_stringLength < textArea->fields.characterLimit) {\n\t\t\tauto text = convert_from_string(textArea->fields.text);\n\t\t\tTextBoxTMP_SetText(textArea, convert_to_string(text + "\\n"), NULL, NULL);\n\t\t}\n\t\treturn;\n\t}\n'''
+          path.write_text(text.replace(marker, insertion, 1))
+          PY
+          rm .github/workflows/apply-chat-shift-enter.yml
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add hooks/Chat.cpp .github/workflows/apply-chat-shift-enter.yml
+          git commit -m "feat: add chat shift enter"
+          git push
