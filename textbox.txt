@@ -1,0 +1,403 @@
+3337-        struct Vector2 min;
+3338-        struct Vector2 max;
+3339-    };
+3340-#pragma endregion
+3341-
+3342-#pragma region TextMeshPro garbage
+3343-    struct UIBehaviour__Fields {
+3344-        struct MonoBehaviour__Fields _;
+3345-    };
+3346-
+3347:    struct TextBoxTMP__Fields {
+3348-        struct MonoBehaviour__Fields _;
+3349-        bool allowAllCharacters;
+3350-        struct String* text;
+3351-        struct String* compoText;
+3352-        int32_t characterLimit;
+3353-        struct TextMeshPro* outputText;
+3354-        struct SpriteRenderer* Background;
+3355-        struct MeshRenderer* Pipe;
+3356-        struct TextMeshPro* placeholderText;
+3357-        float pipeBlinkTimer;
+3358-        bool ClearOnFocus;
+3359-        bool ForceUppercase;
+3360-        struct Button_ButtonClickedEvent* OnEnter;
+3361-        struct Button_ButtonClickedEvent* OnChange;
+3362-        struct Button_ButtonClickedEvent* OnFocusLost;
+3363-        struct TouchScreenKeyboard* keyboard;
+3364-        bool AllowSymbols;
+3365-        bool AllowEmail;
+3366-        bool IpMode;
+3367-        bool AllowPaste;
+3368-        bool Hidden;
+3369-        struct Collider2D__Array* colliders;
+3370-        bool hasFocus;
+3371-        int32_t caretPos;
+3372-        float caretRepeatTimer;
+3373-        float caretYOffset;
+3374-        struct Color colorBackground;
+3375-        struct StringBuilder* tempTxt;
+3376-        struct SpriteRenderer* sendButtonGlyph;
+3377-        bool SendOnFullChars;
+3378-    };
+3379-
+3380:    struct TextBoxTMP {
+3381:        struct TextBoxTMP__Class* klass;
+3382-        MonitorData* monitor;
+3383:        struct TextBoxTMP__Fields fields;
+3384-    };
+3385-
+3386-    struct Graphic__Fields {
+3387-        struct UIBehaviour__Fields _;
+3388-        struct Material* m_Material;
+3389-        struct Color m_Color;
+3390-        bool m_SkipLayoutUpdate;
+3391-        bool m_SkipMaterialUpdate;
+3392-        bool m_RaycastTarget;
+3393-        bool m_RaycastTargetCache;
+3394-        struct Vector4 m_RaycastPadding;
+3395-        struct RectTransform* m_RectTransform;
+3396-        struct CanvasRenderer* m_CanvasRenderer;
+3397-        struct Canvas* m_Canvas;
+3398-        bool m_VertsDirty;
+3399-        bool m_MaterialDirty;
+3400-        struct UnityAction* m_OnDirtyLayoutCallback;
+3401-        struct UnityAction* m_OnDirtyVertsCallback;
+3402-        struct UnityAction* m_OnDirtyMaterialCallback;
+3403-        struct Mesh* m_CachedMesh;
+3404-        struct Vector2__Array* m_CachedUvs;
+3405-        struct TweenRunner_1_ColorTween_* m_ColorTweenRunner;
+3406-        bool _useLegacyMeshGeneration_k__BackingField;
+3407-    };
+3408-
+3409-    struct MaskableGraphic__Fields {
+3410-        struct Graphic__Fields _;
+3411-        bool m_ShouldRecalculateStencil;
+3412-        struct Material* m_MaskMaterial;
+3413-        struct RectMask2D* m_ParentMask;
+3414-        bool m_Maskable;
+3415-        bool m_IsMaskingGraphic;
+3416-        bool m_IncludeForMasking;
+3417-        struct MaskableGraphic_CullStateChangedEvent* m_OnCullStateChanged;
+3418-        bool m_ShouldRecalculate;
+3419-        int32_t m_StencilValue;
+3420-        struct Vector3__Array* m_Corners;
+3421-    };
+3422-
+3423-    struct MaterialReference {
+3424-        int32_t index;
+3425-        struct TMP_FontAsset* fontAsset;
+3426-        struct TMP_SpriteAsset* spriteAsset;
+3427-        struct Material* material;
+3428-        bool isDefaultMaterial;
+3429-        bool isFallbackMaterial;
+3430-        struct Material* fallbackMaterial;
+3431-        float padding;
+3432-        int32_t referenceCount;
+3433-    };
+3434-
+3435-    struct TMP_TextProcessingStack_1_MaterialReference_ {
+3436-        struct MaterialReference__Array* itemStack;
+3437-        int32_t index;
+3438-        struct MaterialReference m_DefaultItem;
+3439-        int32_t m_Capacity;
+3440-        int32_t m_RolloverSize;
+3441-        int32_t m_Count;
+3442-    };
+3443-
+3444-    struct VertexGradient {
+3445-        struct Color topLeft;
+3446-        struct Color topRight;
+3447-        struct Color bottomLeft;
+3448-        struct Color bottomRight;
+3449-    };
+3450-
+3451-    struct TMP_TextProcessingStack_1_System_Single_ {
+3452-        struct Single__Array* itemStack;
+3453-        int32_t index;
+3454-        float m_DefaultItem;
+3455-        int32_t m_Capacity;
+3456-        int32_t m_RolloverSize;
+3457-        int32_t m_Count;
+3458-    };
+3459-
+3460-    struct TMP_TextProcessingStack_1_FontWeight_ {
+3461-        struct FontWeight__Enum__Array* itemStack;
+3462-        int32_t index;
+3463-        int32_t m_DefaultItem;
+--
+6425-    };
+6426-
+6427-    struct AbstractChatInputField {
+6428-        struct AbstractChatInputField__Class* klass;
+6429-        MonitorData* monitor;
+6430-        struct AbstractChatInputField__Fields fields;
+6431-    };
+6432-
+6433-    struct FreeChatInputField__Fields {
+6434-        struct AbstractChatInputField__Fields _;
+6435:        struct TextBoxTMP* textArea;
+6436-        struct PassiveButton* fieldButton;
+6437-        struct TextMeshPro* charCountText;
+6438-        struct Action* OnChangedEvent;
+6439-    };
+6440-
+6441-    struct FreeChatInputField {
+6442-        struct FreeChatInputField__Class* klass;
+6443-        MonitorData* monitor;
+6444-        struct FreeChatInputField__Fields fields;
+6445-    };
+6446-#pragma endregion
+6447-
+6448-#pragma region PlayerMaterial
+6449-#if defined(_CPLUSPLUS_)
+6450-    enum class PlayerMaterial_MaskType__Enum : int32_t {
+6451-        None = 0x00000000,
+6452-        SimpleUI = 0x00000001,
+6453-        ComplexUI = 0x00000002,
+6454-        Exile = 0x00000003,
+6455-        ScrollingUI = 0x00000004,
+6456-    };
+6457-
+6458-#else
+6459-    enum PlayerMaterial_MaskType__Enum {
+6460-        PlayerMaterial_MaskType__Enum_None = 0x00000000,
+6461-        PlayerMaterial_MaskType__Enum_SimpleUI = 0x00000001,
+6462-        PlayerMaterial_MaskType__Enum_ComplexUI = 0x00000002,
+6463-        PlayerMaterial_MaskType__Enum_Exile = 0x00000003,
+6464-        PlayerMaterial_MaskType__Enum_ScrollingUI = 0x00000004,
+6465-    };
+6466-
+6467-#endif
+6468-
+6469-    struct PlayerMaterial_Properties {
+6470-        bool IsLocalPlayer;
+6471-#if defined(_CPLUSPLUS_)
+6472-        PlayerMaterial_MaskType__Enum MaskType;
+6473-#else
+6474-        int32_t MaskType;
+6475-#endif
+6476-        int32_t MaskLayer;
+6477-        int32_t ColorId;
+6478-    };
+6479-#pragma endregion
+6480-
+6481-#pragma region SkinLayer
+6482-    struct SkinLayer__Fields {
+6483-        struct MonoBehaviour__Fields _;
+6484-        int32_t JUMP_ZIPLINE_FRAME_STOP;
+6485-        struct SpriteRenderer* layer;
+6486-        struct SpriteAnim* animator;
+6487-        struct SkinViewData* skin;
+6488-        struct SkinData* data;
+6489-        struct PlayerMaterial_Properties matProperties;
+6490-    };
+6491-
+6492-    struct SkinLayer {
+6493-        struct SkinLayer__Class* klass;
+6494-        MonitorData* monitor;
+6495-        struct SkinLayer__Fields fields;
+6496-    };
+6497-
+6498-    struct SkinLayer__VTable {
+6499-        VirtualInvokeData Equals;
+6500-        VirtualInvokeData Finalize;
+6501-        VirtualInvokeData GetHashCode;
+6502-        VirtualInvokeData ToString;
+6503-    };
+6504-
+6505-    struct SkinLayer__StaticFields {
+6506-    };
+6507-
+6508-    struct SkinLayer__Class {
+6509-        Il2CppClass_0 _0;
+6510-        struct SkinLayer__StaticFields* static_fields;
+6511-        const Il2CppRGCTXData* rgctx_data;
+6512-        Il2CppClass_1 _1;
+6513-        struct SkinLayer__VTable vtable;
+6514-    };
+6515-#pragma endregion
+--
+10740-        struct LobbyPlayerBar* LobbyPlayerBar;
+10741-        struct LobbyInviteBar* LobbyInviteBar;
+10742-        struct Scroller* FriendsScroller;
+10743-        struct Scroller* PlatformFriendsScroller;
+10744-        struct Scroller* BlockedScroller;
+10745-        struct Scroller* NotifScroller;
+10746-        struct Scroller* LobbyScroller;
+10747-        struct Scroller* RecentlyPlayedScroller;
+10748-        struct SpriteRenderer* InactiveAllFriends;
+10749-        struct SpriteRenderer* InactivePlatformFriends;
+10750:        struct TextBoxTMP* AddFriendArea;
+10751-        struct List_1_FriendsListGuestWarning_* guestAccountWarnings;
+10752-        float YStart;
+10753-        float YOffset;
+10754-        struct SpriteRenderer* ViewRequestsButton;
+10755-        struct TextMeshPro* ViewRequestsText;
+10756-        struct Color NewRequestColor;
+10757-        struct Color NoRequestsColor;
+10758-        struct GameObject* AddFriendObjects;
+10759-        struct UiElement* BackButton;
+10760-        struct UiElement* DefaultButtonSelected;
+10761-        struct List_1_UiElement_* ControllerSelectable;
+10762-        struct GameObject* glyphL;
+10763-        struct GameObject* glyphR;
+10764-        int32_t selectedTab;
+10765-        struct List_1_FriendsListBar_* lobbyBars;
+10766-        struct List_1_FriendsListBar_* friendBars;
+10767-        struct List_1_FriendsListBar_* platformFriendBars;
+10768-        struct List_1_FriendsListBar_* notifBars;
+10769-        struct String* friendCodeHiddenText;
+10770-        bool viewingAllFriends;
+10771-        struct String* currentSceneName;
+10772-        float addFriendCooldown;
+10773-    };
+10774-
+10775-    struct FriendsListUI {
+10776-        struct FriendsListUI__Class* klass;
+10777-        MonitorData* monitor;
+10778-        struct FriendsListUI__Fields fields;
+10779-    };
+10780-
+10781-    struct FriendsListUI__VTable {
+10782-        VirtualInvokeData Equals;
+10783-        VirtualInvokeData Finalize;
+10784-        VirtualInvokeData GetHashCode;
+10785-        VirtualInvokeData ToString;
+10786-        VirtualInvokeData OnDisable;
+10787-    };
+10788-
+10789-    struct FriendsListUI__StaticFields {
+10790-        struct FriendsListUI* Instance;
+10791-    };
+10792-
+10793-    struct FriendsListUI__Class {
+10794-        Il2CppClass_0 _0;
+10795-        struct FriendsListUI__StaticFields* static_fields;
+10796-        const Il2CppRGCTXData* rgctx_data;
+10797-        Il2CppClass_1 _1;
+10798-        struct FriendsListUI__VTable vtable;
+10799-    };
+10800-#pragma endregion
+10801-
+10802-#pragma region PlayerBanData
+10803-    struct PlayerBanData__Fields {
+10804-        void* _;
+10805-        float banPoints;
+10806-        int64_t previousGameStartDate;
+10807-        struct Action* OnBanPointsChanged;
+10808-        struct Action* OnPreviousGameStartedDateChanged;
+10809-    };
+10810-
+10811-    struct PlayerBanData {
+10812-        struct PlayerBanData__Class* klass;
+10813-        MonitorData* monitor;
+10814-        struct PlayerBanData__Fields fields;
+10815-    };
+10816-
+10817-    struct PlayerBanData__VTable {
+10818-        VirtualInvokeData Equals;
+10819-        VirtualInvokeData Finalize;
+10820-        VirtualInvokeData GetHashCode;
+10821-        VirtualInvokeData ToString;
+10822-        VirtualInvokeData AmongUs_Data_ISaveDataGroupControl_SaveStart;
+10823-        VirtualInvokeData AmongUs_Data_ISaveDataGroupControl_SaveComplete;
+10824-        VirtualInvokeData AmongUs_Data_ISaveDataGroupControl_LoadStart;
+10825-        VirtualInvokeData AmongUs_Data_ISaveDataGroupControl_LoadComplete;
+10826-        VirtualInvokeData SetValue;
+10827-        VirtualInvokeData HandleChange;
+10828-        VirtualInvokeData OnSaveStart;
+10829-        VirtualInvokeData OnSaveComplete;
+10830-        VirtualInvokeData OnLoadStart;
+341-DO_APP_FUNC(void, MeetingHud_CmdCastVote, (MeetingHud* __this, uint8_t playerId, uint8_t suspectIdx, MethodInfo* method), "Assembly-CSharp, System.Void MeetingHud::CmdCastVote(System.Byte, System.Byte)");
+342-DO_APP_FUNC(void, MeetingHud_CastVote, (MeetingHud* __this, PlayerId srcPlayerId, PlayerId suspectPlayerId, MethodInfo* method), "Assembly-CSharp, System.Void MeetingHud::CastVote(InnerNet.PlayerId, InnerNet.PlayerId)");
+343-DO_APP_FUNC(void, MeetingHud_RpcClearVote, (MeetingHud* __this, PlayerId voterPlayerId, MethodInfo* method), "Assembly-CSharp, System.Void MeetingHud::RpcClearVote(InnerNet.PlayerId)");
+344-DO_APP_FUNC(void, VoteBanSystem_CmdAddVote, (VoteBanSystem* __this, int32_t clientId, MethodInfo* method), "Assembly-CSharp, System.Void VoteBanSystem::CmdAddVote(System.Int32)");
+345-DO_APP_FUNC(void, VoteBanSystem_AddVote, (VoteBanSystem* __this, int32_t srcClient, int32_t clientId, MethodInfo* method), "Assembly-CSharp, System.Void VoteBanSystem::AddVote(System.Int32, System.Int32)");
+346-DO_APP_FUNC(void, GameStartManager_Update, (GameStartManager* __this, MethodInfo* method), "Assembly-CSharp, System.Void GameStartManager::Update()");
+347-DO_APP_FUNC(void, GameStartManager_ResetStartState, (GameStartManager* __this, MethodInfo* method), "Assembly-CSharp, System.Void GameStartManager::ResetStartState()");
+348-DO_APP_FUNC(void, GameStartManager_ReallyBegin, (GameStartManager* __this, bool neverShow, MethodInfo* method), "Assembly-CSharp, System.Void GameStartManager::ReallyBegin(System.Boolean)");
+349-DO_APP_FUNC(void, PingTracker_Update, (PingTracker* __this, MethodInfo* method), "Assembly-CSharp, System.Void PingTracker::Update()");
+350-DO_APP_FUNC(String*, InnerNet_GameCode_IntToGameName, (int32_t gameId, MethodInfo* method), "Assembly-CSharp, System.String InnerNet.GameCode::IntToGameNameV2(System.Int32)");
+351:DO_APP_FUNC(bool, TextBoxTMP_IsCharAllowed, (TextBoxTMP* __this, uint16_t i, MethodInfo* method), "Assembly-CSharp, System.Boolean TextBoxTMP::IsCharAllowed(System.Char)");
+352:DO_APP_FUNC(void, TextBoxTMP_SetText, (TextBoxTMP* __this, String* input, String* inputCompo, MethodInfo* method), "Assembly-CSharp, System.Void TextBoxTMP::SetText(System.String, System.String)");
+353-DO_APP_FUNC(void, GameManager_RpcEndGame, (GameManager* __this, GameOverReason__Enum endReason, bool showAd, MethodInfo* method), "Assembly-CSharp, System.Void GameManager::RpcEndGame(GameOverReason, System.Boolean)");
+354-DO_APP_FUNC(void, KillOverlay_ShowKillAnimation_1, (KillOverlay* __this, NetworkedPlayerInfo* killer, NetworkedPlayerInfo* victim, MethodInfo* method), "Assembly-CSharp, System.Void KillOverlay::ShowKillAnimation(NetworkedPlayerInfo, NetworkedPlayerInfo)");
+355-DO_APP_FUNC(String*, EOSManager_get_FriendCode, (EOSManager* __this, MethodInfo* method), "Assembly-CSharp, System.String EOSManager::get_FriendCode()");
+356-//DO_APP_FUNC(void, EOSManager_set_FriendCode, (EOSManager* __this, String* value, MethodInfo* method), "Assembly-CSharp, System.Void EOSManager::set_FriendCode(System.String)"); crashes epic games when run
+357-DO_APP_FUNC(float, LogicOptions_GetKillDistance, (LogicOptions* __this, MethodInfo* method), "Assembly-CSharp, System.Single LogicOptions::GetKillDistance()");
+358-DO_APP_FUNC(bool, LogicOptions_GetAnonymousVotes, (LogicOptions* __this, MethodInfo* method), "Assembly-CSharp, System.Boolean LogicOptions::GetAnonymousVotes()");
+359-DO_APP_FUNC(bool, LogicOptions_GetVisualTasks, (LogicOptions* __this, MethodInfo* method), "Assembly-CSharp, System.Boolean LogicOptions::GetVisualTasks()");
+360-//DO_APP_FUNC(TaskBarMode__Enum, LogicOptions_GetTaskBarMode, (LogicOptions* __this, MethodInfo* method), "Assembly-CSharp, TaskbarMode LogicOptions::GetTaskBarMode()");
+361-DO_APP_FUNC(void, KillButton_SetTarget, (KillButton* __this, PlayerControl* target, MethodInfo* method), "Assembly-CSharp, System.Void KillButton::SetTarget(PlayerControl)");
+362-DO_APP_FUNC(PlayerControl*, ImpostorRole_FindClosestTarget, (ImpostorRole* __this, MethodInfo* method), "Assembly-CSharp, PlayerControl ImpostorRole::FindClosestTarget()");
+363-DO_APP_FUNC(AsyncOperationHandle_1_UnityEngine_GameObject_, AssetReference_InstantiateAsync_1, (AssetReference* __this, Transform* parent, bool instantiateInWorldSpace, MethodInfo* method), "Unity.Addressables, UnityEngine.ResourceManagement.AsyncOperations.AsyncOperationHandle<UnityEngine.GameObject> UnityEngine.AddressableAssets.AssetReference::InstantiateAsync(UnityEngine.Transform, System.Boolean)");
+364-DO_APP_FUNC(float, Console_CanUse, (Console* __this, NetworkedPlayerInfo* pc, bool* canUse, bool* couldUse, MethodInfo* method), "Assembly-CSharp, System.Single Console::CanUse(NetworkedPlayerInfo, System.Boolean&, System.Boolean&)");
+365-DO_APP_FUNC(void, Ladder_SetDestinationCooldown, (Ladder* __this, MethodInfo* method), "Assembly-CSharp, System.Void Ladder::SetDestinationCooldown()");
+366-DO_APP_FUNC(void, ZiplineConsole_Update, (ZiplineConsole* __this, MethodInfo* method), "Assembly-CSharp, System.Void ZiplineConsole::Update()");
+367-DO_APP_FUNC(void, MushroomWallDoor_SetDoorway, (MushroomWallDoor* __this, bool open, MethodInfo* method), "Assembly-CSharp, System.Void MushroomWallDoor::SetDoorway(System.Boolean)");
+368-//DO_APP_FUNC(void, ActivityManager_UpdateActivity, (ActivityManager* __this, Activity_1 activity, void* callback, MethodInfo* method), "Assembly-CSharp, System.Void Discord.ActivityManager::UpdateActivity(Discord.Activity, Discord.ActivityManager.UpdateActivityHandler)");
+369-DO_APP_FUNC(bool, LogicGameFlowNormal_IsGameOverDueToDeath, (LogicGameFlowNormal* __this, MethodInfo* method), "Assembly-CSharp, System.Boolean LogicGameFlowNormal::IsGameOverDueToDeath()");
+370-DO_APP_FUNC(bool, LogicGameFlowHnS_IsGameOverDueToDeath, (LogicGameFlowHnS* __this, MethodInfo* method), "Assembly-CSharp, System.Boolean LogicGameFlowHnS::IsGameOverDueToDeath()");
+371-DO_APP_FUNC(void, ChatController_OnResolutionChanged, (ChatController* __this, float aspectRatio, int32_t width, int32_t height, bool fullscreen, MethodInfo* method), "Assembly-CSharp, System.Void ChatController::OnResolutionChanged(System.Single, System.Int32, System.Int32, System.Boolean)");
+372-DO_APP_FUNC(void, ChatController_ForceClosed, (ChatController* __this, MethodInfo* method), "Assembly-CSharp, System.Void ChatController::ForceClosed()");
+373-DO_APP_FUNC(void, ChatController_SendFreeChat, (ChatController* __this, MethodInfo* method), "Assembly-CSharp, System.Void ChatController::SendFreeChat()");
+374-DO_APP_FUNC(void, FreeChatInputField_UpdateCharCount, (FreeChatInputField* __this, MethodInfo* method), "Assembly-CSharp, System.Void FreeChatInputField::UpdateCharCount()");
+375-DO_APP_FUNC(void, FreeChatInputField_Clear, (FreeChatInputField* __this, MethodInfo* method), "Assembly-CSharp, System.Void FreeChatInputField::Clear()");
+376-DO_APP_FUNC(Byte__Array*, GameOptionsFactory_ToBytes, (GameOptionsFactory* __this, IGameOptions* data, bool forceAprilFoolsMode, MethodInfo* method), "Assembly-CSharp, System.Byte[] AmongUs.GameOptions.GameOptionsFactory::ToBytes(AmongUs.GameOptions.IGameOptions, System.Boolean)");
+377-DO_APP_FUNC(void, NotificationPopper_AddDisconnectMessage, (NotificationPopper* __this, String* item, MethodInfo* method), "Assembly-CSharp, System.Void NotificationPopper::AddDisconnectMessage(System.String)");
+378-//DO_APP_FUNC(bool, GameData_Serialize, (GameData* __this, MessageWriter* writer, bool initialState, MethodInfo* method), "Assembly-CSharp, System.Boolean GameData::Serialize(Hazel.MessageWriter, System.Boolean)");
+379-DO_APP_FUNC(void, InnerNetClient_SendOrDisconnect, (InnerNetClient* __this, MessageWriter* msg, MethodInfo* method), "Assembly-CSharp, System.Void InnerNet.InnerNetClient::SendOrDisconnect(Hazel.MessageWriter)");
+380-DO_APP_FUNC(void, MessageWriter_Recycle, (MessageWriter* __this, MethodInfo* method), "Hazel, System.Void Hazel.MessageWriter::Recycle()");
+381-DO_APP_FUNC(void, ClipboardHelper_PutClipboardString, (String* str, MethodInfo* method), "Assembly-CSharp, System.Void ClipboardHelper::PutClipboardString(System.String)");
+382-DO_APP_FUNC(void, GameOptionsManager_set_GameHostOptions, (GameOptionsManager* __this, IGameOptions* value, MethodInfo* method), "Assembly-CSharp, System.Void GameOptionsManager::set_GameHostOptions(AmongUs.GameOptions.IGameOptions)");
+383-DO_APP_FUNC(void, LogicOptions_SyncOptions, (LogicOptions* __this, MethodInfo* method), "Assembly-CSharp, System.Void LogicOptions::SyncOptions()");
+384-DO_APP_FUNC(void, EOSManager_PlayOffline, (EOSManager* __this, MethodInfo* method), "Assembly-CSharp, System.Void EOSManager::PlayOffline()");
+385-DO_APP_FUNC(void, DisconnectPopup_DoShow, (DisconnectPopup* __this, MethodInfo* method), "Assembly-CSharp, System.Void DisconnectPopup::DoShow()");
+386-DO_APP_FUNC(bool, NetworkedPlayerInfo_Serialize, (NetworkedPlayerInfo* __this, MessageWriter* writer, bool initialState, MethodInfo* method), "Assembly-CSharp, System.Boolean NetworkedPlayerInfo::Serialize(Hazel.MessageWriter, System.Boolean)");
+387-DO_APP_FUNC(void, NetworkedPlayerInfo_Deserialize, (NetworkedPlayerInfo* __this, MessageReader* reader, bool initialState, MethodInfo* method), "Assembly-CSharp, System.Void NetworkedPlayerInfo::Deserialize(Hazel.MessageReader, System.Boolean)");
+388-DO_APP_FUNC(bool, GameManager_DidImpostorsWin, (GameManager* __this, GameOverReason__Enum reason, MethodInfo* method), "Assembly-CSharp, System.Boolean GameManager::DidImpostorsWin(GameOverReason)");
+389-DO_APP_FUNC(void, AmongUsClient_OnPlayerJoined, (AmongUsClient* __this, ClientData* data, MethodInfo* method), "Assembly-CSharp, System.Void AmongUsClient::OnPlayerJoined(InnerNet.ClientData)");
+390-DO_APP_FUNC(int32_t, GameCode_GameNameToInt, (String* gameId, MethodInfo* method), "Assembly-CSharp, System.Int32 InnerNet.GameCode::GameNameToIntV2(System.String)");
+391-DO_APP_FUNC(PlayerStatsData*, PlayerData_get_Stats, (PlayerData* __this, MethodInfo* method), "Assembly-CSharp, AmongUs.Data.Player.PlayerStatsData AmongUs.Data.Player.PlayerData::get_Stats()");
+392-DO_APP_FUNC(void, AbstractSaveData_Save, (AbstractSaveData* __this, MethodInfo* method), "Assembly-CSharp, System.Void AmongUs.Data.AbstractSaveData::Save()");
+393-DO_APP_FUNC(void, ShipStatus_HandleRpc, (ShipStatus* __this, uint8_t callId, MessageReader* reader, MethodInfo* method), "Assembly-CSharp, System.Void ShipStatus::HandleRpc(System.Byte, Hazel.MessageReader)");
+394-DO_APP_FUNC(Color, TMP_Text_get_color, (TMP_Text* __this, MethodInfo* method), "Unity.TextMeshPro, UnityEngine.Color TMPro.TMP_Text::get_color()");
+395-DO_APP_FUNC(void, TMP_Text_set_color, (TMP_Text* __this, Color value, MethodInfo* method), "Unity.TextMeshPro, System.Void TMPro.TMP_Text::set_color(UnityEngine.Color)");
+396-DO_APP_FUNC(void, TMP_Text_set_outlineColor, (TMP_Text* __this, Color32 value, MethodInfo* method), "Unity.TextMeshPro, System.Void TMPro.TMP_Text::set_outlineColor(UnityEngine.Color32)");
+397-DO_APP_FUNC(void, TMP_Text_set_fontStyle, (TMP_Text* __this, FontStyles__Enum value, MethodInfo* method), "Unity.TextMeshPro, System.Void TMPro.TMP_Text::set_fontStyle(TMPro.FontStyles)");
+398-DO_APP_FUNC(void, ChatBubble_SetText, (ChatBubble* __this, String* chatText, MethodInfo* method), "Assembly-CSharp, System.Void ChatBubble::SetText(System.String)");
+399-DO_APP_FUNC(void, Mushroom_FixedUpdate, (Mushroom* __this, MethodInfo* method), "Assembly-CSharp, System.Void Mushroom::FixedUpdate()");
+400-DO_APP_FUNC(void, Screen_SetResolution, (int32_t width, int32_t height, bool fullscreen, MethodInfo* method), "UnityEngine.CoreModule, System.Void UnityEngine.Screen::SetResolution(System.Int32, System.Int32, System.Boolean)");
+401-DO_APP_FUNC(void, ResolutionManager_SetResolution, (int32_t width, int32_t height, bool fullscreen, MethodInfo* method), "Assembly-CSharp, System.Void ResolutionManager::SetResolution(System.Int32, System.Int32, System.Boolean)");
+402-DO_APP_FUNC(void, GameData_ShowNotification, (GameData* __this, String* playerName, DisconnectReasons__Enum reason, MethodInfo* method), "Assembly-CSharp, System.Void GameData::ShowNotification(System.String, DisconnectReasons)");
+403-DO_APP_FUNC(void, PlayerControl_CmdCheckVanish, (PlayerControl* __this, float maxDuration, MethodInfo* method), "Assembly-CSharp, System.Void PlayerControl::CmdCheckVanish(System.Single)");
+404-DO_APP_FUNC(void, PlayerControl_RpcVanish, (PlayerControl* __this, MethodInfo* method), "Assembly-CSharp, System.Void PlayerControl::RpcVanish()");
+405-DO_APP_FUNC(void, PlayerControl_CmdCheckAppear, (PlayerControl* __this, bool shouldAnimate, MethodInfo* method), "Assembly-CSharp, System.Void PlayerControl::CmdCheckAppear(System.Boolean)");
+406-DO_APP_FUNC(void, PlayerControl_RpcAppear, (PlayerControl* __this, bool shouldAnimate, MethodInfo* method), "Assembly-CSharp, System.Void PlayerControl::RpcAppear(System.Boolean)");
+407-DO_APP_FUNC(void, PlayerControl_SetRoleInvisibility, (PlayerControl* __this, bool isActive, bool shouldAnimate, bool playFullAnimation, MethodInfo* method), "Assembly-CSharp, System.Void PlayerControl::SetRoleInvisibility(System.Boolean, System.Boolean, System.Boolean)");
+408-DO_APP_FUNC(void, PlayerControl_RpcSendChatNote, (PlayerControl* __this, uint8_t srcPlayerId, ChatNoteTypes__Enum noteType, MethodInfo* method), "Assembly-CSharp, System.Void PlayerControl::RpcSendChatNote(System.Byte, ChatNoteTypes)");
+409-DO_APP_FUNC(void, MeetingHud_RpcVotingComplete, (MeetingHud* __this, MeetingHud_VoterState__Array* states, NetworkedPlayerInfo* exiled, bool tie, bool wasOverruled, uint16_t overruleNonce, MethodInfo* method), "Assembly-CSharp, System.Void MeetingHud::RpcVotingComplete(MeetingHud.VoterState[], NetworkedPlayerInfo, System.Boolean, System.Boolean, System.UInt16)");
+410-DO_APP_FUNC(void, MeetingHud_VotingComplete, (MeetingHud* __this, MeetingHud_VoterState__Array* states, NetworkedPlayerInfo* exiled, bool tie, bool wasOverruled, uint16_t overruleNonce, MethodInfo* method), "Assembly-CSharp, System.Void MeetingHud::VotingComplete(MeetingHud.VoterState[], NetworkedPlayerInfo, System.Boolean, System.Boolean, System.UInt16)");
+411-DO_APP_FUNC(void, MeetingHud_CheckForEndVoting, (MeetingHud* __this, MethodInfo* method), "Assembly-CSharp, System.Void MeetingHud::CheckForEndVoting()");
+412-DO_APP_FUNC(bool, AccountManager_CanPlayOnline, (AccountManager* __this, MethodInfo* method), "Assembly-CSharp, System.Boolean AccountManager::CanPlayOnline()");
+413-DO_APP_FUNC(void, SoundManager_StopSound, (SoundManager* __this, AudioClip* clip, MethodInfo* method), "Assembly-CSharp, System.Void SoundManager::StopSound(UnityEngine.AudioClip)");
+414-DO_APP_FUNC(void, Application_set_targetFrameRate, (int32_t value, MethodInfo* method), "UnityEngine.CoreModule, System.Void UnityEngine.Application::set_targetFrameRate(System.Int32)");
+415-DO_APP_FUNC(Object*, Object_1_Instantiate, (Object* original, MethodInfo* method), "UnityEngine.CoreModule, UnityEngine.Object UnityEngine.Object::Instantiate(UnityEngine.Object)");
+416-DO_APP_FUNC(NetworkedPlayerInfo*, GameData_AddDummy, (GameData* __this, PlayerControl* pc, MethodInfo* method), "Assembly-CSharp, NetworkedPlayerInfo GameData::AddDummy(PlayerControl)");
+417-DO_APP_FUNC(void, InnerNetClient_Spawn, (InnerNetClient* __this, InnerNetObject* netObjParent, int32_t ownerId, SpawnFlags__Enum flags, MethodInfo* method), "Assembly-CSharp, System.Void InnerNet.InnerNetClient::Spawn(InnerNet.InnerNetObject, System.Int32, InnerNet.SpawnFlags)");
+418-DO_APP_FUNC(void, MatchMakerGameButton_SetGame, (MatchMakerGameButton* __this, GameListing gameListing, MethodInfo* method), "Assembly-CSharp, System.Void MatchMakerGameButton::SetGame(InnerNet.GameListing)");
+419-DO_APP_FUNC(void, ModManager_LateUpdate, (ModManager* __this, MethodInfo* method), "Assembly-CSharp, System.Void ModManager::LateUpdate()");
+420-DO_APP_FUNC(void, ModManager_ShowModStamp, (ModManager* __this, MethodInfo* method), "Assembly-CSharp, System.Void ModManager::ShowModStamp()");
+421-DO_APP_FUNC(void, EndGameNavigation_ShowDefaultNavigation, (EndGameNavigation* __this, MethodInfo* method), "Assembly-CSharp, System.Void EndGameNavigation::ShowDefaultNavigation()");
+422-//DO_APP_FUNC(void*, EndGameNavigation_CoJoinGame, (EndGameNavigation* __this, MethodInfo* method), "Assembly-CSharp, System.Collections.IEnumerator EndGameNavigation::CoJoinGame()");
+423-DO_APP_FUNC(void*, AmongUsClient_CoJoinOnlineGameFromCode, (AmongUsClient* __this, int32_t gameId, bool fromEnterCode, MethodInfo* method), "Assembly-CSharp, System.Collections.IEnumerator AmongUsClient::CoJoinOnlineGameFromCode(System.Int32, System.Boolean)");
+424-DO_APP_FUNC(void*, AmongUsClient_CoFindGameInfoFromCodeAndJoin, (AmongUsClient* __this, int32_t gameId, MethodInfo* method), "Assembly-CSharp, System.Collections.IEnumerator AmongUsClient::CoFindGameInfoFromCodeAndJoin(System.Int32)");
+425-DO_APP_FUNC(void*, MonoBehaviour_StartCoroutine, (MonoBehaviour* __this, void* routine, MethodInfo* method), "UnityEngine.CoreModule, UnityEngine.Coroutine UnityEngine.MonoBehaviour::StartCoroutine(System.Collections.IEnumerator)");
+426-DO_APP_FUNC(PlayerBodyTypes__Enum, HideAndSeekManager_GetBodyType, (HideAndSeekManager* __this, PlayerControl* player, MethodInfo* method), "Assembly-CSharp, PlayerBodyTypes HideAndSeekManager::GetBodyType(PlayerControl)");
+427-DO_APP_FUNC(PlayerBodyTypes__Enum, NormalGameManager_GetBodyType, (NormalGameManager* __this, PlayerControl* player, MethodInfo* method), "Assembly-CSharp, PlayerBodyTypes NormalGameManager::GetBodyType(PlayerControl)");
+428-DO_APP_FUNC(void, PlayerControl_SetInvisibility, (PlayerControl* __this, bool isActive, MethodInfo* method), "Assembly-CSharp, System.Void PlayerControl::SetInvisibility(System.Boolean)");
+429-DO_APP_FUNC(void, CosmeticsLayer_SetPhantomRoleAlpha, (CosmeticsLayer* __this, float alphaValue, MethodInfo* method), "Assembly-CSharp, System.Void CosmeticsLayer::SetPhantomRoleAlpha(System.Single)");
+430-DO_APP_FUNC(bool, Vent_TryMoveToVent, (Vent* __this, Vent* otherVent, String** error, MethodInfo* method), "Assembly-CSharp, System.Boolean Vent::TryMoveToVent(Vent, System.String&)");
+431-DO_APP_FUNC(void, InnerNetClient_ReportPlayer, (InnerNetClient* __this, int32_t clientId, ReportReasons__Enum reason, MethodInfo* method), "Assembly-CSharp, System.Void InnerNet.InnerNetClient::ReportPlayer(System.Int32, InnerNet.ReportReasons)");
+432-DO_APP_FUNC(void, QuickChatNetData_Serialize, (QuickChatPhraseBuilderResult* data, MessageWriter* writer, MethodInfo* method), "Assembly-CSharp, System.Void AmongUs.QuickChat.QuickChatNetData::Serialize(AmongUs.QuickChat.QuickChatPhraseBuilderResult, Hazel.MessageWriter)");
