@@ -1142,9 +1142,13 @@ void dChatController_SendFreeChat(ChatController* __this, MethodInfo* method) {
 	bool shiftHeld = ImGui::IsKeyDown(0x10) || ImGui::IsKeyDown(0xA0) || ImGui::IsKeyDown(0xA1);
 	if (shiftHeld) {
 		auto textArea = __this->fields.freeChatField->fields.textArea;
-		if (textArea->fields.text->fields.m_stringLength < textArea->fields.characterLimit) {
-			auto text = convert_from_string(textArea->fields.text);
-			TextBoxTMP_SetText(textArea, convert_to_string(text + "\n"), NULL, NULL);
+		auto text = convert_from_string(textArea->fields.text);
+		if (text.length() < textArea->fields.characterLimit) {
+			text += "\n";
+			auto newText = convert_to_string(text);
+			textArea->fields.text = newText;
+			TMP_Text_set_text((TMP_Text*)textArea->fields.outputText, newText, NULL);
+			updateCharCounterText(__this->fields.freeChatField);
 		}
 		return;
 	}
