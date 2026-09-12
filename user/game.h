@@ -34,6 +34,10 @@ namespace Game {
 	extern DestroyableSingleton<app::HudManager*> HudManager;
 	extern DestroyableSingleton<app::AccountManager*> AccountManager;
 
+	void AutoExposeOnMurder(PlayerControl* murderer, PlayerControl* target, MurderResultFlags__Enum resultFlags);
+	void AutoExposeOnShapeshift(PlayerControl* shapeshifter, PlayerControl* target);
+	void AutoExposeOnPhantom(PlayerControl* phantom);
+
 	//typedef bool STEAMUSERSTATS_SETACHIEVEMENT(String* pchName);
 	//typedef bool STEAMUSERSTATS_STORESTATS();
 	

@@ -292,6 +292,40 @@ namespace SettingsTab {
 					State.unlockAllAchievements = true;
 			}
 
+			static bool safeModeWarnState = false;
+
+			if (!safeModeWarnState && ToggleButton("Safe Mode", &State.SafeMode)) {
+				if (!State.SafeMode) {
+					safeModeWarnState = true;
+					State.SafeMode = true;
+				}
+				/*SafeModeNotification = true;
+				timer = static_cast<float>(ImGui::GetTime());*/
+			}
+
+			if (safeModeWarnState) {
+				BoldText("Warning", ImVec4(1.f, 0.f, 0.f, 1.f));
+				ImGui::Text("By turning off Safe Mode, you can unlock functions");
+				ImGui::Text("that are usually detected by the anticheat.");
+				ImGui::Text(" ");
+				ImGui::Text("However, you NEED to ensure that the lobby host has a reduced");
+				ImGui::Text("anticheat (host authority), so the other functions work.");
+				ImGui::Text(" ");
+				ImGui::Text("Otherwise, you will get banned from the lobby by the anticheat!");
+				ImGui::Text("NOTE: The developers will NOT be held responsible for this.");
+				ImGui::Text(" ");
+				ImGui::Text("Are you sure that you want to turn it off?");
+
+				if (ColoredButton(ImVec4(0.f, 1.f, 0.f, 1.f), "Yes")) {
+					safeModeWarnState = false;
+					State.SafeMode = false;
+				}
+				ImGui::SameLine();
+				if (ColoredButton(ImVec4(1.f, 0.f, 0.f, 1.f), "No")) {
+					safeModeWarnState = false;
+				}
+			}
+
 			if (ToggleButton("Allow other mod users to see you're using SickoMenu", &State.ModDetection)) State.Save();
 			/*ImGui::SameLine();
 			if (CustomListBoxInt(" ", &State.BroadcastedMod, MODS, 100.f * State.dpiScale)) State.Save();*/

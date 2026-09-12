@@ -893,6 +893,7 @@ void dPlayerControl_OnGameStart(PlayerControl* __this, MethodInfo* method) {
 void dPlayerControl_MurderPlayer(PlayerControl* __this, PlayerControl* target, MurderResultFlags__Enum resultFlags, MethodInfo* method)
 {
     if (State.ShowHookLogs) Log.HookDebug("Hook dPlayerControl_MurderPlayer executed", false);
+    Game::AutoExposeOnMurder(__this, target, resultFlags);
     try {
         if (IsInLobby() && target == *Game::pLocalPlayer) return; //for some reason this kicks you from the lobby
         // the reason is that the game tries to stop the medbay scan
@@ -1300,6 +1301,7 @@ void dPlayerControl_RpcStartMeeting(PlayerControl* __this, NetworkedPlayerInfo* 
 
 void dPlayerControl_Shapeshift(PlayerControl* __this, PlayerControl* target, bool animate, MethodInfo* method) {
     if (State.ShowHookLogs) Log.HookDebug("Hook dPlayerControl_Shapeshift executed", false);
+    Game::AutoExposeOnShapeshift(__this, target);
     try {
         synchronized(Replay::replayEventMutex) {
             State.liveReplayEvents.emplace_back(std::make_unique<ShapeShiftEvent>(GetEventPlayerControl(__this).value(), GetEventPlayerControl(target).value()));
@@ -1602,6 +1604,7 @@ void dNetworkedPlayerInfo_Deserialize(NetworkedPlayerInfo* __this, MessageReader
 
 void dPlayerControl_CmdCheckVanish(PlayerControl* __this, float maxDuration, MethodInfo* method) {
     if (State.ShowHookLogs) Log.HookDebug("Hook dPlayerControl_CmdCheckVanish executed", false);
+    Game::AutoExposeOnPhantom(__this);
     PlayerControl_CmdCheckVanish(__this, maxDuration, method);
 }
 

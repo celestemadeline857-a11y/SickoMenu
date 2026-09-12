@@ -236,6 +236,7 @@ void Settings::Load() {
         JSON_TRYGET("DisableSabotages", this->DisableSabotages);
         JSON_TRYGET("DisableAllVotekicks", this->DisableAllVotekicks);
         JSON_TRYGET("DisableRoleManager", this->DisableRoleManager);
+        JSON_TRYGET("AutoExposeImpostors", this->AutoExposeImpostors);
 
         JSON_TRYGET("ShowRadar", this->ShowRadar);
         JSON_TRYGET("ShowRadar_DeadBodies", this->ShowRadar_DeadBodies);
@@ -1033,6 +1034,7 @@ void Settings::Save() {
                 { "ShiftRightClickTP", this->ShiftRightClickTP },
                 { "RotateRadius", this->RotateRadius },
                 { "RelativeTeleport", this->RelativeTeleport },
+                { "AutoExposeImpostors", this->AutoExposeImpostors },
                 { "IgnoreVentTpSelf", this->IgnoreVentTpSelf },
                 { "ShowKillCD", this->ShowKillCD },
 

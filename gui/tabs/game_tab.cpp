@@ -330,6 +330,9 @@ namespace GameTab {
             if (IsInGame() && ToggleButton("Disable Venting", &State.DisableVents)) {
                 State.Save();
             }
+            if (IsInGame() && ToggleButton("Auto Expose Impostors", &State.AutoExposeImpostors)) {
+                State.Save();
+            }
             if (IsInGame()) {
                 ImGui::SameLine();
                 if (ToggleButton("Pause Vent Blocking While Venting", &State.PauseVentBlockingWhileVenting)) {
@@ -494,6 +497,11 @@ namespace GameTab {
                     }
 
                     if (CustomListBoxIntColored(" ­", &State.HostSelectedColorId, HOSTCOLORS, 85.0f * State.dpiScale, ImVec4(1.f, 1.f, 1.f, 0.f), 0, "", COLOR_NAMES_COLOR, IM_ARRAYSIZE(COLOR_NAMES_COLOR))) State.Save();
+                }
+
+                if (!State.SafeMode && IsInLobby() && AnimatedButton("Force Start of Game")) {
+                    app::AmongUsClient_KickNotJoinedPlayers(*Game::pAmongUsClient, NULL);
+                    app::InnerNetClient_SendStartGame((InnerNetClient*)(*Game::pAmongUsClient), NULL);
                 }
             }
         }

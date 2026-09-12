@@ -850,7 +850,7 @@ namespace PlayersTab {
                     }
                 }
 
-                /*if ((IsInGame() || IsInLobby()) && selectedPlayer.get_PlayerData()->fields.IsDead) {
+                if ((IsInGame() || IsInLobby()) && selectedPlayer.get_PlayerData()->fields.IsDead && !State.SafeMode) {
                     if (AnimatedButton("Revive"))
                     {
                         for (auto p : selectedPlayers) {
@@ -863,7 +863,7 @@ namespace PlayersTab {
                             }
                         }
                     }
-                }*/
+                }
                 if (selectedPlayers.size() == 1 && !selectedPlayer.is_LocalPlayer() && (IsInMultiplayerGame() || IsInLobby()) && State.AprilFoolsMode) {
                     if (State.ChatCooldown >= 3.5f) {
                         if (AnimatedButton("Mog Player [Sigma]")) {
