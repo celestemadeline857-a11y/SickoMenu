@@ -1070,8 +1070,8 @@ std::string GetGradientUsername(std::string str, ImVec4 color1, ImVec4 color2, i
     if (State.StrikethroughName) opener += "<s>";
 
     std::string closer = "";
-    if (State.UnderlineName) closer += "</u>";
     if (State.StrikethroughName) closer += "</s>";
+    if (State.UnderlineName) closer += "</u>";
 
     if (hex1 == hex2) //if user doesn't want gradients, don't cause extra lag
         return std::format("<#{:02x}{:02x}{:02x}{:02x}>{}{}{}</color>", hex1[0], hex1[1], hex1[2], hex2[3], opener, str, closer);
@@ -1089,7 +1089,7 @@ std::string GetGradientUsername(std::string str, ImVec4 color1, ImVec4 color2, i
     }
     int nameLength = int(properChars.size());
     if (nameLength > 1) { //fix division by zero
-        std::string gradientText = "";
+        std::string gradientText = opener;
         int mx = 2 * nameLength - 2;
         for (int i = 0; i < nameLength; i++)
         {
@@ -1129,10 +1129,10 @@ std::string GetGradientUsername(std::string str, ImVec4 color1, ImVec4 color2, i
 
             // Build color tag and append character
             std::string colorCode = std::format("<#{:02x}{:02x}{:02x}{:02x}>", r, g, b, a);
-            gradientText += colorCode + opener + properChars[i] + closer + "</color>";
+            gradientText += colorCode + properChars[i] + "</color>";
         }
 
-        return gradientText;
+        return gradientText + closer;
     }
     else {
         int r = int((hex1[0] + hex2[0]) / 2);
