@@ -30,6 +30,8 @@ bool InputStringWithHint(const char* label, const char* hint, std::string* str, 
 bool ToggleButton(const char* str_id, bool* v);
 bool TabGroup(const char* label, bool highlight = false);
 bool ColoredButton(ImVec4 col, const char* label);
+void ContrastText(ImVec4 color, const char* text);
+void ContrastTextAt(ImVec2 pos, ImVec4 color, const char* text);
 void BoldText(const char* text, ImVec4 col = ImVec4(0.f, 0.f, 0.f, 0.f));
 bool SliderIntV2(const char* label, int* v, int v_min, int v_max, const char* format, ImGuiSliderFlags flags);
 bool AnimatedButton(const char* label, bool isAffectedBySearch = true, const ImVec2& size = ImVec2(0, 0));

@@ -276,6 +276,7 @@ namespace SelfTab {
         ImGui::BeginChild("###Self", ImVec2(500 * State.dpiScale, 0), true, ImGuiWindowFlags_NoBackground);
         if (openVisuals) {
             ImGui::Dummy(ImVec2(4, 4) * State.dpiScale);
+            if (ToggleButton("Name Contrast Mode", &State.NameContrastMode)) State.Save();
             if (ToggleButton("Max Vision", &State.MaxVision)) {
                 State.Save();
             }
@@ -371,113 +372,6 @@ namespace SelfTab {
                 }
             }
 
-            if (State.CustomName && ImGui::CollapsingHeader("Custom Name Options"))
-            {
-                if (ToggleButton("Italics", &State.ItalicName)) {
-                    State.Save();
-                }
-                ImGui::SameLine();
-                if (ToggleButton("Underline", &State.UnderlineName)) {
-                    State.Save();
-                }
-                ImGui::SameLine();
-                if (ToggleButton("Strikethrough", &State.StrikethroughName)) {
-                    State.Save();
-                }
-                ImGui::SameLine();
-                if (ToggleButton("Bold", &State.BoldName)) {
-                    State.Save();
-                }
-                ImGui::SameLine();
-                if (ToggleButton("Nobr", &State.NobrName)) {
-                    State.Save();
-                }
-
-                if (ImGui::ColorEdit4("Starting Gradient Color", (float*)&State.NameColor1, ImGuiColorEditFlags__OptionsDefault | ImGuiColorEditFlags_NoInputs | ImGuiColorEditFlags_AlphaBar | ImGuiColorEditFlags_AlphaPreview)) {
-                    State.Save();
-                }
-                ImGui::SameLine();
-                if (ImGui::ColorEdit4("Ending Gradient Color", (float*)&State.NameColor2, ImGuiColorEditFlags__OptionsDefault | ImGuiColorEditFlags_NoInputs | ImGuiColorEditFlags_AlphaBar | ImGuiColorEditFlags_AlphaPreview)) {
-                    State.Save();
-                }
-                ImGui::SameLine();
-                if (ToggleButton("Colored", &State.ColoredName)) {
-                    State.Save();
-                }
-
-                if (ToggleButton("RGB", &State.RgbName)) {
-                    State.Save();
-                }
-
-                if (CustomListBoxInt("Gradient Method", &State.ColorMethod, { "Static", "Left-to-Right" }, 80.f * State.dpiScale))
-                    State.Save();
-                ImGui::SameLine();
-                if (CustomListBoxInt("RGB Method", &State.RgbMethod, { "All-at-Once", "Left-to-Right" }, 80.f * State.dpiScale))
-                    State.Save();
-
-                if (ToggleButton("Enable Prefix and Suffix", &State.UsePrefixAndSuffix)) State.Save();
-                if (ToggleButton("New Lines for Prefix and Suffix", &State.PrefixAndSuffixNewLines)) State.Save();
-
-                InputString("Name Prefix", &State.NamePrefix);
-                InputString("Name Suffix", &State.NameSuffix);
-                if (State.UsePrefixAndSuffix) ImGui::TextColored(ImVec4(1.0f, 1.0f, 1.0f, 1.0f), ("Note: Prefix and/or suffix will be cleared from the ends of the name if it contains them."));
-                if (State.UsePrefixAndSuffix) ImGui::TextColored(ImVec4(1.0f, 1.0f, 1.0f, 1.0f), ("This is done to prevent name overflowing."));
-
-                if (ToggleButton("Font", &State.Font)) {
-                    State.Save();
-                }
-                if (State.Font) {
-                    ImGui::SameLine();
-                    if (CustomListBoxInt(" ", &State.FontType, FONTS, 160.f * State.dpiScale)) {
-                        State.Save();
-                    }
-                }
-                if (State.Font) ImGui::TextColored(ImVec4(1.0f, 1.0f, 1.0f, 1.0f), ("Note: The white nickname will not be visible in the chat"));
-
-                /*if (ToggleButton("Material", &State.Material)) {
-                    State.Save();
-                }
-                ImGui::SameLine();
-                if (CustomListBoxInt(" Some materials are not supported", &State.MaterialType, MATERIALS, 160.f * State.dpiScale)) {
-                    State.Save();
-                }*/
-
-                if (ToggleButton("Size", &State.ResizeName)) {
-                    State.Save();
-                }
-
-                ImGui::SameLine();
-                ImGui::InputFloat("Name Size", &State.NameSize);
-
-                if (ToggleButton("Indent", &State.IndentName)) {
-                    State.Save();
-                }
-
-                ImGui::SameLine();
-                ImGui::InputFloat("Name Indent", &State.NameIndent);
-
-                ToggleButton("Cspace", &State.CspaceName);
-
-                ImGui::SameLine();
-                ImGui::InputFloat("Name Cspace", &State.NameCspace);
-
-                ToggleButton("Mspace", &State.MspaceName);
-
-                ImGui::SameLine();
-                ImGui::InputFloat("Name Mspace", &State.NameMspace);
-
-                ToggleButton("Voffset", &State.VoffsetName);
-
-                ImGui::SameLine();
-                ImGui::InputFloat("Name Voffset", &State.NameVoffset);
-                if (ToggleButton("Rotate", &State.RotateName)) {
-                    State.Save();
-                }
-
-                ImGui::SameLine();
-                ImGui::InputFloat("Rotation Angle", &State.NameRotate);
-                ImGui::Dummy(ImVec2(5, 5) * State.dpiScale);
-            }
 
             if (ToggleButton("Reveal Roles", &State.RevealRoles)) {
                 State.Save();

@@ -501,23 +501,7 @@ namespace PlayersTab {
                     }
 
                     nameColor.w *= alpha;
-                    ImVec2 namePos = ImGui::GetCursorScreenPos();
-                    float outlineSize = State.dpiScale;
-                    float luminance = nameColor.x * 0.2126f + nameColor.y * 0.7152f + nameColor.z * 0.0722f;
-                    ImVec4 outlineColor = luminance > 0.5f
-                        ? ImVec4(0.f, 0.f, 0.f, nameColor.w)
-                        : ImVec4(1.f, 1.f, 1.f, nameColor.w);
-                    ImDrawList* drawList = ImGui::GetWindowDrawList();
-                    ImU32 outline = ImGui::ColorConvertFloat4ToU32(outlineColor);
-                    drawList->AddText(ImVec2(namePos.x - outlineSize, namePos.y), outline, displayPlayerNameC);
-                    drawList->AddText(ImVec2(namePos.x + outlineSize, namePos.y), outline, displayPlayerNameC);
-                    drawList->AddText(ImVec2(namePos.x, namePos.y - outlineSize), outline, displayPlayerNameC);
-                    drawList->AddText(ImVec2(namePos.x, namePos.y + outlineSize), outline, displayPlayerNameC);
-                    drawList->AddText(ImVec2(namePos.x - outlineSize, namePos.y - outlineSize), outline, displayPlayerNameC);
-                    drawList->AddText(ImVec2(namePos.x + outlineSize, namePos.y - outlineSize), outline, displayPlayerNameC);
-                    drawList->AddText(ImVec2(namePos.x - outlineSize, namePos.y + outlineSize), outline, displayPlayerNameC);
-                    drawList->AddText(ImVec2(namePos.x + outlineSize, namePos.y + outlineSize), outline, displayPlayerNameC);
-                    ImGui::TextColored(nameColor, displayPlayerNameC);
+                    ContrastText(nameColor, displayPlayerNameC);
                 }
             }
             if (shouldEndListBox)

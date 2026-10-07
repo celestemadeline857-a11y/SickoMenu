@@ -311,6 +311,8 @@ public:
     bool BoldName = false;
     bool NobrName = false;
     bool ColoredName = false;
+    bool NameContrastMode = true;
+    bool SmoothNameUnderline = true;
     ImVec4 NameColor1 = ImVec4(1.f, 1.f, 1.f, 1.f);
     ImVec4 NameColor2 = ImVec4(1.f, 1.f, 1.f, 1.f);
     float RgbNameColor = 0.f;

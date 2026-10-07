@@ -9,6 +9,25 @@
 
 using namespace ImGui;
 
+void ContrastTextAt(ImVec2 pos, ImVec4 color, const char* text) {
+	if (State.NameContrastMode) {
+		float luminance = color.x * 0.2126f + color.y * 0.7152f + color.z * 0.0722f;
+		ImVec4 outlineColor = luminance > 0.5f ? ImVec4(0.f, 0.f, 0.f, color.w * 0.32f) : ImVec4(1.f, 1.f, 1.f, color.w * 0.32f);
+		float outlineSize = 0.7f * State.dpiScale;
+		ImU32 outline = ColorConvertFloat4ToU32(outlineColor);
+		ImDrawList* drawList = GetWindowDrawList();
+		drawList->AddText(ImVec2(pos.x - outlineSize, pos.y), outline, text);
+		drawList->AddText(ImVec2(pos.x + outlineSize, pos.y), outline, text);
+		drawList->AddText(ImVec2(pos.x, pos.y - outlineSize), outline, text);
+		drawList->AddText(ImVec2(pos.x, pos.y + outlineSize), outline, text);
+	}
+}
+
+void ContrastText(ImVec4 color, const char* text) {
+	ContrastTextAt(GetCursorScreenPos(), color, text);
+	TextColored(color, "%s", text);
+}
+
 bool CustomListBoxInt(const char* label, int* value, const std::vector<const char*> list, float width, ImVec4 col, ImGuiComboFlags flags, const char* visualLabel) {
 	auto comboLabel = "##" + std::string(label);
 	auto leftArrow = "##" + std::string(label) + "Left";
@@ -57,7 +76,7 @@ bool CustomListBoxInt(const char* label, int* value, const std::vector<const cha
 		else
 			TextDisabled(trueLabel.c_str());
 	}
-	else TextColored(col, visualLabel == "" ? label : visualLabel);
+	else ContrastText(col, visualLabel == "" ? label : visualLabel);
 
 	return response;
 }
@@ -79,6 +98,7 @@ bool CustomListBoxIntColored(const char* label, int* value, const std::vector<co
 		for (size_t i = 0; i < list.size(); i++) {
 			const bool hasColor = itemColors != nullptr && i < itemColorsCount;
 			if (hasColor) PushStyleColor(ImGuiCol_Text, itemColors[i].color);
+			if (hasColor) ContrastTextAt(GetCursorScreenPos(), itemColors[i].color, list.at(i));
 
 			bool is_selected = (*value == i);
 			if (Selectable(list.at(i), is_selected)) {
@@ -111,7 +131,7 @@ bool CustomListBoxIntColored(const char* label, int* value, const std::vector<co
 	SameLine(0, spacing);
 	//noobuild by gdjkhp
 	if (col.x == 0 && col.y == 0 && col.z == 0 && col.w == 0) Text(visualLabel == "" ? label : visualLabel);
-	else TextColored(col, visualLabel == "" ? label : visualLabel);
+	else ContrastText(col, visualLabel == "" ? label : visualLabel);
 
 	return response;
 }
@@ -243,7 +263,7 @@ bool CustomListBoxPlayerSelectionMultiple(const char* label, std::array<std::pai
 			if (playerData->fields.IsDead)
 				nameColor = AmongUsColorToImVec4(Palette__TypeInfo->static_fields->DisabledGrey);
 
-			TextColored(nameColor, playerName.c_str());
+			ContrastText(nameColor, playerName.c_str());
 		}
 		EndCombo();
 	}

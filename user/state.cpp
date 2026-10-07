@@ -349,6 +349,8 @@ void Settings::Load() {
         JSON_TRYGET("BoldName", this->BoldName);
         JSON_TRYGET("NobrName", this->BoldName);
         JSON_TRYGET("ColoredName", this->ColoredName);
+        JSON_TRYGET("NameContrastMode", this->NameContrastMode);
+        JSON_TRYGET("SmoothNameUnderline", this->SmoothNameUnderline);
         JSON_TRYGET("ColorMethod", this->ColorMethod);
         JSON_TRYGET("NameColor1_R", this->NameColor1.x);
         JSON_TRYGET("NameColor1_G", this->NameColor1.y);
@@ -1067,6 +1069,8 @@ void Settings::Save() {
                 { "BoldName", this->BoldName },
                 { "NobrName", this->NobrName },
                 { "ColoredName", this->ColoredName },
+                { "NameContrastMode", this->NameContrastMode },
+                { "SmoothNameUnderline", this->SmoothNameUnderline },
                 { "ColorMethod", this->ColorMethod },
                 { "NameColor1_R", this->NameColor1.x },
                 { "NameColor1_G", this->NameColor1.y },

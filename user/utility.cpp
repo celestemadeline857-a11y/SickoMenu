@@ -1066,15 +1066,12 @@ std::string GetGradientUsername(std::string str, ImVec4 color1, ImVec4 color2, i
 
     //names look ugly af with white strikethrough
     std::string opener = "";
-    if (State.UnderlineName) opener += "<u>";
+    if (State.UnderlineName && State.SmoothNameUnderline) opener += "<u>";
     if (State.StrikethroughName) opener += "<s>";
 
     std::string closer = "";
     if (State.StrikethroughName) closer += "</s>";
-    if (State.UnderlineName) closer += "</u>";
-
-    if (hex1 == hex2) //if user doesn't want gradients, don't cause extra lag
-        return std::format("<#{:02x}{:02x}{:02x}{:02x}>{}{}{}</color>", hex1[0], hex1[1], hex1[2], hex2[3], opener, str, closer);
+    if (State.UnderlineName && State.SmoothNameUnderline) closer += "</u>";
 
     std::vector<std::string> properChars = {};
     String* blank = convert_to_string("");
@@ -1086,6 +1083,18 @@ std::string GetGradientUsername(std::string str, ImVec4 color1, ImVec4 color2, i
         }
         properChars.push_back(last_char + str[i]);
         last_char = "";
+    }
+
+    if (hex1 == hex2) //if user doesn't want gradients, don't cause extra lag
+    {
+        std::string colorCode = std::format("<#{:02x}{:02x}{:02x}{:02x}>", hex1[0], hex1[1], hex1[2], hex2[3]);
+        if (State.UnderlineName && !State.SmoothNameUnderline) {
+            std::string underlineText;
+            for (const auto& character : properChars)
+                underlineText += "<u>" + character + "</u>";
+            return colorCode + opener + underlineText + closer + "</color>";
+        }
+        return colorCode + opener + str + closer + "</color>";
     }
     int nameLength = int(properChars.size());
     if (nameLength > 1) { //fix division by zero
@@ -1129,7 +1138,10 @@ std::string GetGradientUsername(std::string str, ImVec4 color1, ImVec4 color2, i
 
             // Build color tag and append character
             std::string colorCode = std::format("<#{:02x}{:02x}{:02x}{:02x}>", r, g, b, a);
-            gradientText += colorCode + properChars[i] + "</color>";
+            if (State.UnderlineName && !State.SmoothNameUnderline)
+                gradientText += colorCode + "<u>" + properChars[i] + "</u></color>";
+            else
+                gradientText += colorCode + properChars[i] + "</color>";
         }
 
         return gradientText + closer;
